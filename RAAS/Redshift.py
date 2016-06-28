@@ -1,5 +1,7 @@
 import psycopg2
 import os
+import random
+import string
 
 class Redshift:
 
@@ -11,10 +13,17 @@ class Redshift:
             self.connection_string = connection_string
 
         self.schema = schema
-        self.table_lookup = []
+        self.tables = []
 
     def create_table(self, columns):
-        raise NotImplementedError()
+        def generate_column_query():
+            return ",".join(["{0} {1}".format(col[0], col[1]) for col in columns])
+
+        def random_table_name():
+            return "".join([random.choice(string.ascii_letters) for i in range(9)])
+
+        base_query = "CREATE TABLE {0}.{1} ({2});"
+        self.run_query(base_query.format(self.schema, random_table_name(), generate_column_query()))
 
     def run_query(self, query):
         conn = psycopg2.connect(self.connection_string)
@@ -28,3 +37,5 @@ class Redshift:
         conn.commit()
         conn.close()
         return result
+
+Redshift().create_table([["id", "int"]])
