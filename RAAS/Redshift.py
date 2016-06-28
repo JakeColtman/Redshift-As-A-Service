@@ -23,7 +23,9 @@ class Redshift:
             return "".join([random.choice(string.ascii_letters) for i in range(9)])
 
         base_query = "CREATE TABLE {0}.{1} ({2});"
-        self.run_query(base_query.format(self.schema, random_table_name(), generate_column_query()))
+        table_name = random_table_name()
+        self.run_query(base_query.format(self.schema, table_name, generate_column_query()))
+        return table_name
 
     def run_query(self, query):
         conn = psycopg2.connect(self.connection_string)
