@@ -16,8 +16,13 @@ class Continuation:
 
     def trigger(self, table):
         try:
-            for continuation in self.continuation_queries:
-                self.conn.run_query(continuation)
+            for continuation in self.continuation_queries[table]:
+                print(self.conn.run_query(continuation))
             return True
         except ProgrammingError:
             return False
+
+if __name__ == "__main__":
+    continuey = Continuation()
+    continuey.register("Test", "Select 1")
+    continuey.trigger("Test")
