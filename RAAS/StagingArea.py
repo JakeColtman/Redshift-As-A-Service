@@ -2,12 +2,12 @@ import random
 import string
 from Redshift import Redshift
 
+
 class StagingArea:
-
-    def __init__(self, conn = Redshift()):
-
+    def __init__(self, schema="Tests", conn=Redshift()):
         self.conn = conn
         self.tables = []
+        self.schema = schema
 
     def create_table(self, columns):
         def generate_column_query():

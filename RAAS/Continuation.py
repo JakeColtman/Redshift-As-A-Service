@@ -14,6 +14,8 @@ class Continuation:
         except:
             self.continuation_queries[table] = [continuation]
 
+        print (self.continuation_queries)
+
     def trigger(self, table):
         try:
             for continuation in self.continuation_queries[table]:
