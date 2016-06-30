@@ -1,2 +1,3 @@
 def validate(table):
-    print("Merging {0}".format(table))
+    print("Validating {0}".format(table))
+    return True
