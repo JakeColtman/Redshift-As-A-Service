@@ -1,3 +1,7 @@
+## Note
+
+This was a sketch of a nano-service in preparation for a proper service that I don't want to publish too much of for company IP reasons.  Imagine a proper service interface, more varied activities with files and more gback end processing to clean up using internal messaging queues and active service pattern 
+
 # Redshift-As-A-Service
 
 I've been implementing for Service based architecture recently and I wanted to make a model version of Redshift as a service.  The idea is to allow other services to interact with a big data repo.  This can be for either storage within a service, or integration between services.
